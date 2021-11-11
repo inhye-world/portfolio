@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Properties</title>
+    
+    <style>
+        :root{
+            --font-size : 32px;
+            --background-color : thistle;
+            --base-space : 8px;
+        }
+
+        .first-list{
+            color: whitesmoke;
+            margin-left: var(--base-space);
+            background-color: var(--background-color);
+        }
+
+        .first-list li{
+            font-size: var(--font-size);
+        }
+
+        .second-list{
+            color: whitesmoke;
+            margin-left: calc(var(--base-space)*2);
+            font-size: var(--font-size);
+            background-color: var(--background-color);
+        }
+
+        @media screen and (max-width: 768px){
+            :root{
+            --font-size : 32px;
+            --background-color : rgb(121, 138, 160);
+            --base-space : 8px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <ul class="first-list">
+        <li>Orange</li>
+        <li>Apple</li>
+    </ul>
+
+    <ul class="second-list">
+        <li>Korea</li>
+        <li>Japan</li>
+        <li>China</li>
+    </ul>
+</body>
+</html>
