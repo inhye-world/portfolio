@@ -1,0 +1,23 @@
+/* Global */
+:root {
+  /* color */
+
+  /* font size */
+  --font-large: 48px;
+  --font-medium: 20px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-mocro: 14px;
+
+  /* font weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* size */
+}
+
+/* universal tags */
+* {
+  box-sizing: border-box;
+}
