@@ -102,10 +102,21 @@ p {
 #navbar {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-beige);
   align-items: center;
   color: var(--color-light-white);
   padding: 16px;
+  position: fixed;
+  z-index: 3;
+  background-color: transparent;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  transition: all var(--annimation-duration) ease-in-out;
+}
+
+#navbar.navbar__color {
+  background-color: var(--color-beige);
+  padding: 9px;
 }
 
 .fa-lightbulb {
@@ -149,6 +160,7 @@ p {
   background: url("imgs/home_background.png") center/cover no-repeat;
   padding: 40px;
   text-align: center;
+  padding-top: 100px;
 }
 
 .home__avatar {
