@@ -2,8 +2,6 @@
 'use script';//비 상식적인 것을 쓸 수 없도록 조치
 
 //Make navbar transparent when it is on the top
-console.log("hello world");
-
 const navbar = document.querySelector("#navbar");
 const navHeight = navbar.getBoundingClientRect().height;
 
@@ -37,3 +35,11 @@ function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior: "smooth"});
 }
+
+//Make home transparent as passing
+const home = document.querySelector(".home__container");
+const homeHeight = home.getBoundingClientRect().height;
+
+window.addEventListener("scroll", () =>{
+    home.style.opacity = 1 - window.scrollY / homeHeight;
+});
