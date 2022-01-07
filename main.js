@@ -31,11 +31,6 @@ contactbtn.addEventListener('click', () => {
     scrollIntoView('#contact');
 });
 
-function scrollIntoView(selector){
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth"});
-}
-
 //Make home transparent as passing
 const home = document.querySelector(".home__container");
 const homeHeight = home.getBoundingClientRect().height;
@@ -43,3 +38,23 @@ const homeHeight = home.getBoundingClientRect().height;
 window.addEventListener("scroll", () =>{
     home.style.opacity = 1 - window.scrollY / homeHeight;
 });
+
+//show arrow when scroll
+const pageup = document.querySelector('.pageup');
+window.addEventListener('scroll', () => {
+    if(window.scrollY > homeHeight/2){
+        pageup.classList.add('show__arrow');
+    }else{
+        pageup.classList.remove('show__arrow');
+    }
+})
+
+// move top of page when tapping up arrow icon
+pageup.addEventListener('click',() => {
+    scrollIntoView('#home');
+})
+
+function scrollIntoView(selector){
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: "smooth"});
+}
