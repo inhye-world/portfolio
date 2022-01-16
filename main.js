@@ -18,7 +18,14 @@ window.addEventListener("scroll", () =>{
 const navbarMenu = document.querySelector('.navbar__menu');
 
 navbarMenu.addEventListener('click', (event) => {
+    const selectedMenu = document.querySelector('.navbar__menu_item.selected');
+    selectedMenu.classList.remove('selected');
+    
     const target = event.target;
+
+    const actTarget = target;
+    actTarget.classList.add('selected');
+
     const link = target.dataset.link;
     if(link == null){
         return;
