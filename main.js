@@ -16,6 +16,7 @@ window.addEventListener("scroll", () =>{
 
 /* handle scrolling when tapping on the navbar menu */
 const navbarMenu = document.querySelector('.navbar__menu');
+
 navbarMenu.addEventListener('click', (event) => {
     const target = event.target;
     const link = target.dataset.link;
@@ -68,6 +69,13 @@ workCate.addEventListener('click', (event) => {
     if(filter == null){
         return;
     }
+
+    //remove selection form the previous item and select new one
+    const active = document.querySelector('.category__btn.selected');
+    active.classList.remove('selected');
+
+    const target = event.target.nodeName === 'BUTTON' ? event.target : event.target.parentNode;
+    target.classList.add('selected');
 
     projectContainer.classList.add('anim-out');
     
