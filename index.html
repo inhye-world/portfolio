@@ -187,19 +187,28 @@
             <h1>My Work</h1>
             <h3>Projects</h3>
             <div class="work__categories">
-                <button class="category__btn  active">All<span class="category__count">5</span></button>
-                <button class="category__btn">Front-end<span class="category__count">4</span></button>
-                <button class="category__btn">Back-end<span class="category__count">1</span></button>
+                <button class="category__btn  active" data-filter="*">All<span class="category__count">2</span></button>
+                <button class="category__btn" data-filter="front-end">Front-end<span class="category__count">1</span></button>
+                <button class="category__btn" data-filter="back-end">Back-end<span class="category__count">1</span></button>
             </div>
 
             <div class="work__projects">
-                <a href="https://github.com/inhye-world/invest_together" class="project" target="blank">
+                <a href="https://github.com/inhye-world/invest_together" class="project" target="blank" data-type="back-end">
                     <img class = "project__img" src="imgs/projects/mobile.png" alt="invest-together">
                     <div class="project__description">
                         <h3>Invest Together</h3>
                         <span>spring framework, javascript, bank api 자산관리 및 가계부 웹페이지</span>
                     </div>
                 </a>
+
+                <a href="https://github.com/inhye-world/portfolio" class="project" target="blank" data-type="front-end">
+                    <img class = "project__img" src="imgs/projects/portfolio.png" alt="portfolio">
+                    <div class="project__description">
+                        <h3>My portfolio</h3>
+                        <span>html, javascript, css</span>
+                    </div>
+                </a>
+
             </div>
         </div>
     </section>

@@ -58,3 +58,25 @@ function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior: "smooth"});
 }
+
+//sorting projects by type
+const workCate = document.querySelector('.work__categories');
+const projectContainer = document.querySelector('.work__projects')
+const projects = document.querySelectorAll('.project');
+workCate.addEventListener('click', (event) => {
+    const filter = event.target.dataset.filter || event.target.parentNode.dataset.filter;
+    if(filter == null){
+        return;
+    }
+
+    projects.forEach((project) => {
+        
+    console.log(project.dataset.type);
+    console.log(`filter : `+filter);
+        if(filter === '*' || filter === project.dataset.type){
+            project.classList.remove('invisible');
+        }else{
+            project.classList.add('invisible');
+        }
+    });
+});
