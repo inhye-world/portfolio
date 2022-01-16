@@ -69,14 +69,20 @@ workCate.addEventListener('click', (event) => {
         return;
     }
 
-    projects.forEach((project) => {
+    projectContainer.classList.add('anim-out');
+    
+    setTimeout(() => {
+        projects.forEach((project) => {
         
-    console.log(project.dataset.type);
-    console.log(`filter : `+filter);
-        if(filter === '*' || filter === project.dataset.type){
-            project.classList.remove('invisible');
-        }else{
-            project.classList.add('invisible');
-        }
-    });
+            console.log(project.dataset.type);
+            console.log(`filter : `+filter);
+                if(filter === '*' || filter === project.dataset.type){
+                    project.classList.remove('invisible');
+                }else{
+                    project.classList.add('invisible');
+                }
+            });
+        projectContainer.classList.remove('anim-out');
+    }, 300);
+    
 });
