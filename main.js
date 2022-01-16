@@ -23,7 +23,15 @@ navbarMenu.addEventListener('click', (event) => {
     if(link == null){
         return;
     }
+
+    navbarMenu.classList.remove('open');
     scrollIntoView(link);
+});
+
+//hamburger navbar style
+const navtoggle = document.querySelector('.navbar__toggle-btn');
+navtoggle.addEventListener('click', () => {
+    navbarMenu.classList.toggle('open');
 });
 
 /* move by scrolling when tapping on the contact button */
