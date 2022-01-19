@@ -18,14 +18,8 @@ window.addEventListener("scroll", () =>{
 const navbarMenu = document.querySelector('.navbar__menu');
 
 navbarMenu.addEventListener('click', (event) => {
-    const selectedMenu = document.querySelector('.navbar__menu_item.selected');
-    selectedMenu.classList.remove('selected');
     
     const target = event.target;
-
-    const actTarget = target;
-    actTarget.classList.add('selected');
-
     const link = target.dataset.link;
     if(link == null){
         return;
@@ -33,7 +27,9 @@ navbarMenu.addEventListener('click', (event) => {
 
     navbarMenu.classList.remove('open');
     scrollIntoView(link);
+    selectNavItem(target);
 });
+
 
 //hamburger navbar style
 const navtoggle = document.querySelector('.navbar__toggle-btn');
@@ -70,11 +66,6 @@ pageup.addEventListener('click',() => {
     scrollIntoView('#home');
 })
 
-function scrollIntoView(selector){
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth"});
-}
-
 //sorting projects by type
 const workCate = document.querySelector('.work__categories');
 const projectContainer = document.querySelector('.work__projects')
@@ -107,5 +98,67 @@ workCate.addEventListener('click', (event) => {
             });
         projectContainer.classList.remove('anim-out');
     }, 300);
-    
 });
+    // make selected effect at nav menu as scrollling
+const sectionIds = [
+    '#home',
+    '#about',
+    '#skills',
+    '#work',
+    '#contact'
+];    
+
+const sections = sectionIds.map(id => document.querySelector(id));
+const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
+
+function selectNavItem(selected){
+    selectedNavItem.classList.remove('active');
+    //selectedNavItem = navItems[selectedIndex];
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active');
+}
+
+function scrollIntoView(selector){
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: 'smooth'});
+    selectNavItem(navItems[sectionIds.indexOf(selector)]);
+}
+
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.3,
+}
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+
+const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+        if(!entry.isIntersecting && entry.intersectionRatio > 0){
+            console.log(entry);
+            const index = sectionIds.indexOf(`#${entry.target.id}`);
+            //스크롤을 아래로 내려서 페이지가 위로 올라간다.
+            //-> 다음 인덱스를 찾는거지
+            if(entry.boundingClientRect.y < 0){
+                selectedNavIndex = index + 1;
+            }else{
+                selectedNavIndex = index - 1;
+            }
+        }
+    })
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach(section => observer.observe(section));
+
+window.addEventListener('wheel', () => {
+    if(window.scrollY === 0){
+        selectedNavIndex = 0;
+    }else if(window.scrollY + window.innerHeight === document.body.clientHeight){
+        selectedNavIndex = navItems.length - 1;
+    }
+    selectNavItem(navItems[selectedNavIndex]);
+})
+
